@@ -35,6 +35,11 @@ class PluginConfigurationManager:
         f.write(json.dumps(json_data))
         f.truncate()
         f.close()
+    def get_json_data(self, domain):
+        f = open(self.configs[domain])
+        json_data = json.loads(f.read())
+        f.close()
+        return json_data
 
 class IRCBot(irc.IRCClient):
     nickname = "Bot123"     # Default values, something's *seriously* 
@@ -187,6 +192,12 @@ class IRCBot(irc.IRCClient):
 
     def plugin_set_setting(self, name, setting, value):
         self.plugin_configs.set_setting(setting, name, value)
+
+    def plugin_list_settings(self, name):
+        settings = []
+        for s in self.plugin_configs.get_json_data(name):
+            settings.append(s)
+        return settings
 
     def is_module_available(self, module):
         try:

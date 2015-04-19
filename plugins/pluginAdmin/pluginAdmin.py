@@ -5,7 +5,7 @@ import string
 class pluginAdmin(IPlugin):
     def botmsg(self, user, channel, task, args):
         manager = PluginManagerSingleton.get()
-        if user.split("!")[0] not in manager.app.plugin_get_setting("pluginAdmin", "allowedUsers"):
+        if user.split("!")[0] not in manager.app.plugin_get_setting("pluginAdmin", "allowedUsers") and task == "plugin" :
             manager.app.msg(channel, "You're not authorised to do that!")
             return
         if task == "plugin":

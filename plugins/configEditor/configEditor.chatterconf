@@ -1,0 +1,6 @@
+{ 
+	"activated": "true",
+	"depends": [],
+	"allowedUsers": ["Aurora01"],
+	"pmOnly": "no"
+}
