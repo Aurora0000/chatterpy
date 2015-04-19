@@ -1,0 +1,9 @@
+[Core]
+Name = Plugin Administration Tool
+Module = pluginAdmin
+
+[Documentation]
+Author = Aurora01
+Version = 1.0
+Website = https://int0x10.com
+Description = A plugin that allows on-the-fly reloading with !plugin rehash, and plugin disabling/enabling with !plugin unload and !plugin load
