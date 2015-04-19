@@ -2,6 +2,7 @@
 from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol, ssl
 from yapsy.PluginManager import PluginManagerSingleton
+from pkgutil import iter_modules
 import time
 import sys
 import logging
@@ -45,14 +46,20 @@ class IRCBot(irc.IRCClient):
         manager.quit = False
         manager.setPluginPlaces(["plugins"])   
         manager.collectPlugins()
-        logging.log(10, "Plugins loaded.")        
+        logging.log(10, "Plugins loaded.")    
+        logging.log(10, "Checking plugin compatibility...")    
         for p in manager.getAllPlugins():
             try:
-                if self.plugin_configs.get_setting("activated", p.path.split("/")[-1]) == "true":
-                    manager.activatePluginByName(p.name)
+                pPath = p.path.split("/")[-1]
+                if self.plugin_configs.get_setting("activated", pPath) == "true":
+                    if self.are_modules_available(self.plugin_configs.get_setting("depends", pPath)):
+                        manager.activatePluginByName(p.name)
+                    else:
+                       manager.deactivatePluginByName(p.name)
+                       logging.log(30, "Plugin \"" + p.name + "\" does not have all dependencies available!") 
                 else:
                     manager.deactivatePluginByName(p.name)
-            except StandardError as e:
+            except LookupError as e:
                 logging.log(30, "Plugin " + p.name + " has no .chatterconf file! Deactivating.")
                 manager.deactivatePluginByName(p.name)
             if hasattr(p.plugin_object, "plugin_loaded"):
@@ -180,6 +187,20 @@ class IRCBot(irc.IRCClient):
 
     def plugin_set_setting(self, name, setting, value):
         self.plugin_configs.set_setting(setting, name, value)
+
+    def is_module_available(self, module):
+        try:
+            __import__(module)
+        except ImportError:
+            return False
+        else:
+            return True
+   
+    def are_modules_available(self, modules):
+        for m in modules:
+            if not self.is_module_available(m):
+                return False
+        return True
     
 class BotFactory(protocol.ClientFactory):
     protocol = IRCBot

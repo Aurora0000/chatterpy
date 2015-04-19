@@ -1,1 +1,4 @@
-{"activated": "false"}
+{
+"activated": "false", 	
+"depends": []
+}
