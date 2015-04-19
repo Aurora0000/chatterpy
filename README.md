@@ -17,6 +17,6 @@ ChatterPy requires a bot.conf file (in JSON format) with the following attribute
 
 "collision_prefix" - *Optional*. Added before nickname if the desired nickname is taken.
 
-"collision_suffix" - *Optional". Added after nickname if desired nickname is taken.
+"collision_suffix" - *Optional*. Added after nickname if desired nickname is taken.
 
 It is advisable that at least one of the above is used, or the bot will fail to connect if the desired nick is taken.
