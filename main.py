@@ -215,10 +215,19 @@ def loadConfig(file):
 if __name__ == '__main__':
     # Load the JSON configuration file
     data = loadConfig("bot.conf")
+    log_lvl = logging.INFO
+    if data["logLevel"] == "DEBUG":
+        log_lvl = logging.DEBUG
+    elif data["logLevel"] == "INFO":
+        log_lvl = logging.INFO
+    elif data["logLevel"] == "WARNING":
+        log_lvl = logging.WARNING
+    elif data["logLevel"] == "ERROR":
+        log_lvl = logging.ERROR
     # Set up formatters and logger
     _format = "[%(asctime)s] %(levelname)s: %(message)s"
     _datefmt = "%Y-%m-%d %H:%M:%S"
-    logging.basicConfig(filename=data["logFile"], format=_format, datefmt=_datefmt, level=logging.DEBUG)  
+    logging.basicConfig(filename=data["logFile"], format=_format, datefmt=_datefmt, level=log_lvl)  
     pwd = data["password"] if "password" in data else ""    #Assume no password if it isn't specified
     f = BotFactory(data["channels"], str(data["nickname"]), str(pwd), data)
     hostname = str(data["hostname"])
