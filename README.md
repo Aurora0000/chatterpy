@@ -1,5 +1,12 @@
 # chatterpy
-ChatterPy is a lightweight bot framework based on Twisted, designed to be easy to use, with a powerful module loading system and a great amount of flexibility..
+ChatterPy is a lightweight bot framework based on Twisted, designed to be easy to use, with a powerful module loading system and a great amount of flexibility.
+
+## Dependencies
+* [yapsy] (http://yapsy.sourceforge.net/)
+* [Twisted] (https://twistedmatrix.com)
+* Python 2.7 (Twisted doesn't support Python 3)
+ 
+
 ## Configuration File
 ChatterPy requires a bot.conf file (in JSON format) with the following attributes (all are required unless specified):
 
