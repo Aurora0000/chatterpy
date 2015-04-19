@@ -1,11 +1,15 @@
 from yapsy.IPlugin import IPlugin
 from yapsy.PluginManager import PluginManagerSingleton
+import string
 # The python file's name must be the same as the .chatter file's module attribute
-class examplePlugin(IPlugin):
+class pluginAdmin(IPlugin):
     def botmsg(self, user, channel, task, args):
+        manager = PluginManagerSingleton.get()
+        if user.split("!")[0] not in manager.app.plugin_get_setting("pluginAdmin", "allowedUsers"):
+            manager.app.msg(channel, "You're not authorised to do that!")
+            return
         if task == "plugin":
             if args[0] == "rehash":
-                manager = PluginManagerSingleton.get()
                 manager.app.rehash_plugins()
                 manager.app.msg(channel, "Plugins rehashed!")
             elif args[0] == "load":
