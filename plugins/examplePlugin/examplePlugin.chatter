@@ -1,0 +1,9 @@
+[Core]
+Name = Example Plugin
+Module = examplePlugin
+
+[Documentation]
+Author = Aurora01
+Version = 1.0
+Website = https://int0x10.com
+Description = An example plugin to demonstrate the most simple plugin that can be made with ChatterPy.
