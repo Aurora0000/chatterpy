@@ -108,6 +108,26 @@ class IRCBot(irc.IRCClient):
         suffix = str(self.configuration["collision_suffix"]) if "collision_suffix" in self.configuration else ""
         return  prefix + nickname + suffix
 
+    def rehash_plugins(self):
+        #Very hacky, but the singleton doesn't seem to have any other option...
+        PluginManagerSingleton._PluginManagerSingleton__instance = None
+
+        manager = PluginManagerSingleton.get()
+        manager.app = self
+        manager.quit = False
+        manager.setPluginPlaces(["plugins"])   
+        manager.collectPlugins()
+        for p in manager.getAllPlugins():
+            manager.activatePluginByName(p.name)
+            if hasattr(p.plugin_object, "plugin_loaded"):
+                p.plugin_object.plugin_loaded()
+        logging.log(10, "Plugins reloaded.")
+    
+    def unload_plugin(self, plugin_name):
+        manager.deactivatePluginByName(plugin_name)
+    def load_plugin(self, plugin_name):
+        manager.activatePluginByName(plugin_name)
+
 
 class BotFactory(protocol.ClientFactory):
     protocol = IRCBot
