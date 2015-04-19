@@ -1,0 +1,9 @@
+[Core]
+Name = Forum Feed Viewer Plugin
+Module = forumFeed
+
+[Documentation]
+Author = Aurora01
+Version = 1.0
+Website = https://int0x10.com
+Description = A plugin that fetches latest posts from an RSS feed (particularly aimed at forums, though this isn't required)

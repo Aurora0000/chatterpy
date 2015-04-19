@@ -1,0 +1,8 @@
+{
+	"activated": "true",
+	"feedUrl": "https://int0x10.com/forums/syndication.php?limit=2",
+	"respondTo": "feed",
+	"depends": [
+		"feedparser"
+	]
+}

@@ -38,15 +38,11 @@ class PluginConfigurationManager:
 class IRCBot(irc.IRCClient):
     nickname = "Bot123"     # Default values, something's *seriously* 
     password = ""           # wrong if these are ever used...
-    def connectionMade(self):
-        self.nickname = self.factory.nickname
-        self.password = self.factory.password
-        self.configuration = self.factory.config
-        self.plugin_configs = PluginConfigurationManager("./plugins")
-        irc.IRCClient.connectionMade(self)
-        logging.log(10, "Bot connected to server")
+    
+    def init_plugins(self):
         manager = PluginManagerSingleton.get()
         manager.app = self
+        manager.quit = False
         manager.setPluginPlaces(["plugins"])   
         manager.collectPlugins()
         logging.log(10, "Plugins loaded.")        
@@ -67,7 +63,15 @@ class IRCBot(irc.IRCClient):
                    logging.log(40, "Unhandled exception! " + tb)
             else:
                 logging.log(10, p.name + " does not have a plugin_loaded hook!")
- 
+    def connectionMade(self):
+        self.nickname = self.factory.nickname
+        self.password = self.factory.password
+        self.configuration = self.factory.config
+        self.plugin_configs = PluginConfigurationManager("./plugins")
+        irc.IRCClient.connectionMade(self)
+        logging.log(10, "Bot connected to server")
+        manager = PluginManagerSingleton.get()
+        self.init_plugins()
     def connectionLost(self, reason):
         #connection fail
         pass
@@ -75,7 +79,7 @@ class IRCBot(irc.IRCClient):
     def signedOn(self):
         for chan in self.factory.channels:
             self.join(str(chan))
- 
+
     def joined(self, channel):
         manager = PluginManagerSingleton.get()
         for pluginInfo in manager.getAllPlugins():  
@@ -153,16 +157,7 @@ class IRCBot(irc.IRCClient):
         #Very hacky, but the singleton doesn't seem to have any other option...
         PluginManagerSingleton._PluginManagerSingleton__instance = None
 
-        manager = PluginManagerSingleton.get()
-        manager.app = self
-        manager.quit = False
-        manager.setPluginPlaces(["plugins"])   
-        manager.collectPlugins()
-        for p in manager.getAllPlugins():
-            manager.activatePluginByName(p.name)
-            if hasattr(p.plugin_object, "plugin_loaded"):
-                p.plugin_object.plugin_loaded()
-        logging.log(10, "Plugins reloaded.")
+        self.init_plugins()
     
     def unload_plugin(self, plugin_name):
         manager = PluginManagerSingleton.get()
@@ -194,8 +189,6 @@ class BotFactory(protocol.ClientFactory):
         self.nickname = nickname
         self.password = password
         self.config = config
-        manager = PluginManagerSingleton.get()
-        manager.quit = False
     def clientConnectionLost(self, connector, reason):
         #Reconnect if we weren't told to quit
         manager = PluginManagerSingleton.get()
