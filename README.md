@@ -6,6 +6,10 @@ ChatterPy is a lightweight bot framework based on Twisted, designed to be easy t
 * [Twisted] (https://twistedmatrix.com)
 * Python 2.7 (Twisted doesn't support Python 3)
  
+## Creating a plugin
+Take a look at plugins/examplePlugin and adjust that for your needs. Wiki coming soon*
+
+*Probably never.
 
 ## Configuration File
 ChatterPy requires a bot.conf file (in JSON format) with the following attributes (all are required unless specified):
