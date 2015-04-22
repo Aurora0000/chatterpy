@@ -4,8 +4,6 @@ import string
 import logging
 # The python file's name must be the same as the .chatter file's module attribute
 class helpPlugin(IPlugin):
-    def user_changed_nick(self, old_nick, new_nick):
-        logging.warning(old_nick + " > " + new_nick)
     def plugin_loaded(self):
         # Generate list of plugins and their tasks
         taskDict = {}
