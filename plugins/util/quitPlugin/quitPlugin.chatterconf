@@ -1,5 +1,13 @@
 { 
 	"activated": "true",
 	"depends": [],
-	"allowedUsers": ["Aurora01"]
+	"allowedUsers": ["Aurora01"],
+	"help": {
+		"quit": {
+			"[]": "Quit the network."
+		},
+		"reboot": {
+			"[]": "Reboot the bot."
+		}
+	}
 }

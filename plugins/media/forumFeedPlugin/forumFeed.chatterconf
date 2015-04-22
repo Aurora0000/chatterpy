@@ -4,5 +4,10 @@
 	"respondTo": "feed",
 	"depends": [
 		"feedparser"
-	]
+	],
+	"help": {
+		"feed": {
+			"latest": "Gets the latest entry in the feed."
+		}
+	}
 }

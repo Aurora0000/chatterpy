@@ -8,5 +8,12 @@
     "activated": "true", 
     "disallowedPlugins": [
         "Plugin Administration Tool"
-    ]
+    ],
+    "help": {
+        "plugin": {
+             "load [plugin name]": "Loads the specified plugin and activates it.",
+             "unload [plugin name]": "Unloads the specified plugin and deactivates it.",
+             "rehash": "Reloads all plugins and updates to account for any changes."
+	}
+    }
 }

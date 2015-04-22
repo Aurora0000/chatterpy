@@ -1,0 +1,9 @@
+[Core]
+Name = Help Plugin
+Module = helpPlugin
+
+[Documentation]
+Author = Aurora01
+Version = 1.0
+Website = https://int0x10.com
+Description = A plugin that allows users to view help for commands.

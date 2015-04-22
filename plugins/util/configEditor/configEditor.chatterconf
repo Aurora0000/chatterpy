@@ -2,5 +2,13 @@
 	"activated": "true",
 	"depends": [],
 	"allowedUsers": ["Aurora01"],
-	"pmOnly": "no"
+	"pmOnly": "no",
+	"help": {
+		"config": {
+			"get [param] [plugin name]": "Gets the specified parameter from the plugin's configuration",
+			"list [plugin name]": "Get all available parameters from the configuration file.",
+			"set [param] [pluginShortName] [value]": "Sets the specified parameter from the plugin.",
+			"getName [plugin name]": "Returns the short name of the specified plugin."
+		}
+	}
 }

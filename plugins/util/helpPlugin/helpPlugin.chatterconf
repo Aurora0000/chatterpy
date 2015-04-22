@@ -1,0 +1,37 @@
+{
+    "depends": [], 
+    "tasks": {
+        "feed": {
+            "latest": "Gets the latest entry in the feed."
+        }, 
+        "quit": {
+            "[]": "Quit the network."
+        }, 
+        "help": {
+            "[task]": "Gets a list of all arguments for the task", 
+            "[]": "Gets a list of all tasks available"
+        }, 
+        "plugin": {
+            "unload [plugin name]": "Unloads the specified plugin and deactivates it.", 
+            "load [plugin name]": "Loads the specified plugin and activates it.", 
+            "rehash": "Reloads all plugins and updates to account for any changes."
+        }, 
+        "reboot": {
+            "[]": "Reboot the bot."
+        }, 
+        "config": {
+            "get [param] [plugin name]": "Gets the specified parameter from the plugin's configuration", 
+            "set [param] [pluginShortName] [value]": "Sets the specified parameter from the plugin.", 
+            "getName [plugin name]": "Returns the short name of the specified plugin.", 
+            "list [plugin name]": "Get all available parameters from the configuration file."
+        }
+    }, 
+    "activated": "true", 
+    "pmOnly": "yes", 
+    "help": {
+        "help": {
+            "[task]": "Gets a list of all arguments for the task", 
+            "[]": "Gets a list of all tasks available"
+        }
+    }
+}
