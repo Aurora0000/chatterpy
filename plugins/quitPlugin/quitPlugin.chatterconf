@@ -1,0 +1,5 @@
+{ 
+	"activated": "true",
+	"depends": [],
+	"allowedUsers": ["Aurora01"]
+}

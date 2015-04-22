@@ -6,7 +6,7 @@ import logging
 class configEditor(IPlugin):
     def botmsg(self, user, channel, task, args):
         # Quit before doing anything if we haven't got any arguments
-        if not args:
+        if not args and task == "config":
             logging.debug("[configEditor] No arguments!")
             return
         
