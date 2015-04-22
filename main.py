@@ -152,7 +152,9 @@ class IRCBot(irc.IRCClient):
             if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "user_changed_nick"):  
                 try: 
                     # Prefix is nick!user@host, we only want nick.
-                    old_nick = prefix.split("!")[0]   
+                    old_nick = prefix   
+                    suff = prefix.split("!")[1]
+                    new_nick = params[0] + "!" + suff
                     pluginInfo.plugin_object.user_changed_nick(old_nick, new_nick)
                 except StandardError as e:
                     tb = traceback.format_exc()
