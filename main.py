@@ -32,7 +32,7 @@ class PluginConfigurationManager:
         json_data = json.loads(f.read())
         json_data[setting] = value
         f.seek(0)
-        f.write(json.dumps(json_data))
+        f.write(json.dumps(json_data, indent=4))
         f.truncate()
         f.close()
     def get_json_data(self, domain):
@@ -160,13 +160,14 @@ class IRCBot(irc.IRCClient):
             else:
                 logging.log(10, pluginInfo.name + " not activated/no available function (userJoined)!")
     def alterCollidedNick(self, nickname):
-        # Lines are very long, but still, blame Python's verbose ternary statements
-        prefix = str(self.configuration["collision_prefix"]) if "collision_prefix" in self.configuration else ""
-        suffix = str(self.configuration["collision_suffix"]) if "collision_suffix" in self.configuration else ""
+        preSetting = str(self.configuration["collision_prefix"])
+        prefix = preSetting if "collision_prefix" in self.configuration else ""
+        sufSetting = str(self.configuration["collision_suffix"])
+        suffix = sufSetting if "collision_suffix" in self.configuration else ""
         return  prefix + nickname + suffix
 
     def rehash_plugins(self):
-        #Very hacky, but the singleton doesn't seem to have any other option...
+        # Very hacky, but the singleton doesn't seem to have any other option...
         PluginManagerSingleton._PluginManagerSingleton__instance = None
 
         self.init_plugins()

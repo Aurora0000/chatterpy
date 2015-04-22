@@ -1,1 +1,12 @@
-{"allowedUsers": ["Aurora01", "Cheesoid", "Viperidae"], "activated": "true", "disallowedPlugins": ["Plugin Administration Tool"], "depends": []}
+{
+    "allowedUsers": [
+        "Aurora01", 
+        "Cheesoid", 
+        "Viperidae"
+    ], 
+    "depends": [], 
+    "activated": "true", 
+    "disallowedPlugins": [
+        "Plugin Administration Tool"
+    ]
+}
