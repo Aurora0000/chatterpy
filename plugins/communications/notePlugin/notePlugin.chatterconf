@@ -1,9 +1,13 @@
 {
+    "activated": "true", 
+    "notes": {
+        "Reagan": [
+            "\"Test!\" (from Aurora01)"
+        ]
+    }, 
     "allowedUsers": [
         "Aurora01"
     ], 
-    "notes": {}, 
-    "activated": "true", 
     "depends": [], 
     "help": {
         "note": {

@@ -103,9 +103,9 @@ class IRCBot(irc.IRCClient):
                     logging.log(40, "Unhandled exception! " + tb)
             else:
                 logging.log(10, pluginInfo.name + " not activated/no available function (joined)!")
+
     def privmsg(self, user, channel, msg):
         manager = PluginManagerSingleton.get()
-        #TODO: Error checking/catching (not that important, Python saves us usually)
         for pluginInfo in manager.getAllPlugins():  
             if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "privmsg"):   
                 try:
@@ -130,8 +130,16 @@ class IRCBot(irc.IRCClient):
                     logging.log(10, pluginInfo.name + " not activated/no available function (botmsg)!")
 
     def action(self, user, channel, msg):
-        #me
-        pass
+        manager = PluginManagerSingleton.get()
+        for pluginInfo in manager.getAllPlugins():  
+            if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "action"):  
+                try: 
+                    pluginInfo.plugin_object.action(user, channel, msg)
+                except StandardError as e:
+                    tb = traceback.format_exc()
+                    logging.log(40, "Unhandled exception! " + tb)
+            else:
+                logging.log(10, pluginInfo.name + " not activated/no available function (action)!")
 
     def userJoined(self, user, channel):
         manager = PluginManagerSingleton.get()
