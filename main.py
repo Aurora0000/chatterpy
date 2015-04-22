@@ -136,14 +136,14 @@ class IRCBot(irc.IRCClient):
     def userJoined(self, user, channel):
         manager = PluginManagerSingleton.get()
         for pluginInfo in manager.getAllPlugins():  
-            if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "userJoined"):  
+            if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "user_joined"):  
                 try: 
-                    pluginInfo.plugin_object.userJoined(user, channel)
+                    pluginInfo.plugin_object.user_joined(user, channel)
                 except StandardError as e:
                     tb = traceback.format_exc()
                     logging.log(40, "Unhandled exception! " + tb)
             else:
-                logging.log(10, pluginInfo.name + " not activated/no available function (userJoined)!")
+                logging.log(10, pluginInfo.name + " not activated/no available function (user_joined)!")
  
     def irc_NICK(self, prefix, params):
         # User changed their nick. We abstract this slightly.
@@ -158,7 +158,7 @@ class IRCBot(irc.IRCClient):
                     tb = traceback.format_exc()
                     logging.log(40, "Unhandled exception! " + tb)
             else:
-                logging.log(10, pluginInfo.name + " not activated/no available function (userJoined)!")
+                logging.log(10, pluginInfo.name + " not activated/no available function (user_changed_nick)!")
     def alterCollidedNick(self, nickname):
         preSetting = str(self.configuration["collision_prefix"])
         prefix = preSetting if "collision_prefix" in self.configuration else ""

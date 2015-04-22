@@ -23,12 +23,15 @@ class helpPlugin(IPlugin):
         if manager.app.plugin_get_setting("helpPlugin", "pmOnly") == "yes":
             channel = user
         if task == "help":
+            logging.info(user + " requested " + task + " " + string.join(args[0:]))
             if not args:
                 # Provide list of available plugins
                 # TODO: Don't spam everyone
                 _settings = manager.app.plugin_get_setting("helpPlugin", "tasks")
+                _data = " | "
                 for _task in _settings:
-                    manager.app.msg(channel, str(_task))
+                    _data = _data + str(_task) + " | "
+                manager.app.msg(channel, _data)
             else:
                 _settings = manager.app.plugin_get_setting("helpPlugin", "tasks")
                 for _opt, _val in _settings[args[0]].iteritems():

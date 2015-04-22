@@ -19,6 +19,10 @@
         "reboot": {
             "[]": "Reboot the bot."
         }, 
+        "note": {
+            "read": "Reads a message from your queue", 
+            "send [user] [message]": "Sends the user a note which will be sent to them on joining"
+        }, 
         "config": {
             "get [param] [plugin name]": "Gets the specified parameter from the plugin's configuration", 
             "set [param] [pluginShortName] [value]": "Sets the specified parameter from the plugin.", 

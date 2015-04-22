@@ -1,0 +1,9 @@
+[Core]
+Name = Note Plugin
+Module = notePlugin
+
+[Documentation]
+Author = Aurora01
+Version = 1.0
+Website = https://int0x10.com
+Description = A plugin to send notes to other users which they will receive when they join.
