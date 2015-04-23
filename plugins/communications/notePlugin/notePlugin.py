@@ -34,6 +34,9 @@ class notePlugin(IPlugin):
                 return
             manager.app.msg(user, str(x[0]))
             _notes[user].remove(x[0])
+            manager.app.msg(user, "You now have " + str(len(x)) + " messages. Use !note read to read the next one.")
+            if len(x) == 0:
+                _notes.pop(user, None)
             manager.app.plugin_set_setting("notePlugin", "notes", _notes)
         elif task == "note" and args[0] == "purge":
             manager = PluginManagerSingleton.get()  
@@ -48,7 +51,7 @@ class notePlugin(IPlugin):
         _notes = manager.app.plugin_get_setting("notePlugin", "notes")
         if user in _notes:
             if len(_notes[user]) > 0:
-                manager.app.msg(user, "You have new messages. Use !note read to read each one.")
+                manager.app.msg(user, "You have " + str(len(_notes[iser])) + " new messages. Use !note read to read each one.")
     def add_note(self, target, msg):
         manager = PluginManagerSingleton.get()
         _notes = manager.app.plugin_get_setting("notePlugin", "notes")
