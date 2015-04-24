@@ -1,0 +1,9 @@
+{
+    "depends": [], 
+    "activated": "true",
+    "help": {
+        "version": {
+            "[]": "Gets the version of ChatterPy used by this bot."
+        }
+    }
+}
