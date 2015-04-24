@@ -44,6 +44,10 @@ class PluginConfigurationManager:
 class IRCBot(irc.IRCClient):
     nickname = "Bot123"     # Default values, something's *seriously* 
     password = ""           # wrong if these are ever used...
+
+    versionMajor = 0        # TODO: Update on release!
+    versionMinor = 1
+    versionPatch = 0
     
     def init_plugins(self):
         manager = PluginManagerSingleton.get()
