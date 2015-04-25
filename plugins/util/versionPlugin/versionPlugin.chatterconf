@@ -1,6 +1,6 @@
 {
     "depends": [], 
-    "activated": "true",
+    "activated": "true", 
     "help": {
         "version": {
             "[]": "Gets the version of ChatterPy used by this bot."

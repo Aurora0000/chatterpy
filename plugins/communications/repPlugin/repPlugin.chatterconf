@@ -1,0 +1,12 @@
+{
+    "repData": {}, 
+    "depends": [], 
+    "activated": "true", 
+    "help": {
+        "rep": {
+            "give [user]": "Gives rep to [user].", 
+            "check [user]": "Checks a user's rep."
+        }
+    }, 
+    "lastRep": ""
+}

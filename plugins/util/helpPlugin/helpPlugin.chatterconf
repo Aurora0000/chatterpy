@@ -16,6 +16,10 @@
             "load [plugin name]": "Loads the specified plugin and activates it.", 
             "rehash": "Reloads all plugins and updates to account for any changes."
         }, 
+        "rep": {
+            "give [user]": "Gives rep to [user].", 
+            "check [user]": "Checks a user's rep."
+        }, 
         "reboot": {
             "[]": "Reboot the bot."
         }, 
@@ -34,7 +38,7 @@
         }
     }, 
     "activated": "true", 
-    "pmOnly": "yes", 
+    "pmOnly": "no", 
     "help": {
         "help": {
             "[task]": "Gets a list of all arguments for the task", 
