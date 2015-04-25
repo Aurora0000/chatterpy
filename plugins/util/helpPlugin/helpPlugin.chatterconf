@@ -35,6 +35,11 @@
             "set [param] [pluginShortName] [value]": "Sets the specified parameter from the plugin.", 
             "getName [plugin name]": "Returns the short name of the specified plugin.", 
             "list [plugin name]": "Get all available parameters from the configuration file."
+        }, 
+        "away": {
+            "reason [user]": "Checks why [user] is away", 
+            "set [reason]": "Sets yourself as away with [reason]", 
+            "unset": "Unsets yourself as away"
         }
     }, 
     "activated": "true", 

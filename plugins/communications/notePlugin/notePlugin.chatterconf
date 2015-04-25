@@ -1,9 +1,9 @@
 {
+    "activated": "true", 
+    "notes": {}, 
     "allowedUsers": [
         "Aurora01"
     ], 
-    "notes": {}, 
-    "activated": "true", 
     "depends": [], 
     "help": {
         "note": {

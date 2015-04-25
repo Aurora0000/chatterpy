@@ -29,9 +29,10 @@ class repPlugin(IPlugin):
                 manager.app.msg(channel, args[1] + " has " + str(self.get_rep(args[1])) + " rep!")
             elif args[0] == "purge":
                 manager = PluginManagerSingleton.get()
-                manager.app.plugin_set_setting("repPlugin", "repData", {})
-                manager.app.plugin_set_setting("repPlugin", "lastRep", "")
-                manager.app.msg(channel, "Rep data purged.")
+                if user in manager.app.plugin_get_setting("repPlugin", "allowedUsers"):
+                    manager.app.plugin_set_setting("repPlugin", "repData", {})
+                    manager.app.plugin_set_setting("repPlugin", "lastRep", "")
+                    manager.app.msg(channel, "Rep data purged.")
     
     def get_rep(self, user):
         manager = PluginManagerSingleton.get()
