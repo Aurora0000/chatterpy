@@ -1,13 +1,11 @@
 {
-    "blacklist": [
-        "Viperidae"
-    ], 
     "depends": [
-        "bs4"
+        "bs4",
+	"feedparser"
     ], 
     "activated": "true", 
     "help": {
-        "wiki": {
+        "msdn": {
             "get [topic]": "Gets a summary for [topic] from Wikipedia."
         }
     }
