@@ -1,7 +1,5 @@
 {
-    "blacklist": [
-        "TheTimeKeeper"
-    ], 
+    "blacklist": [], 
     "depends": [
         "bs4"
     ], 

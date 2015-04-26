@@ -9,4 +9,4 @@ class examplePlugin(IPlugin):
 
         # For the purposes of this example, we'll just say ping to any message.
         manager.app.msg(channel, "Ping.")
-        
+

@@ -10,7 +10,7 @@ class forumFeed(IPlugin):
         if channel == manager.app.nickname:
             channel = user  # Crafty hack to allow bot to PM users if message
                             # isn't in a channel.
-        if task == manager.app.plugin_get_setting("forumFeed", "respondTo") and args[0] == "latest":
+        if task == "feed" and args[0] == "latest":
             feed = feedparser.parse(manager.app.plugin_get_setting("forumFeed", "feedUrl"))
             user = user.split("!")[0]   # Remove the user and host
             title = str(feed.entries[0].title)
