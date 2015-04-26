@@ -46,7 +46,7 @@ class IRCBot(irc.IRCClient):
     password = ""           # wrong if these are ever used...
 
     versionMajor = 0        # TODO: Update on release!
-    versionMinor = 1
+    versionMinor = 2
     versionPatch = 0
     
     def init_plugins(self):
