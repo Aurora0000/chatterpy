@@ -39,3 +39,27 @@ class configEditor(IPlugin):
             pName = args[2]
             v = manager.app.plugin_set_setting(pName, args[1], string.join(args[3:]))
             manager.app.msg(channel, "Value set successfully.")           
+        elif task == "config" and args[0] == "add":
+            pName = args[2]
+            newEl = string.join(args[3:])
+            arr = manager.app.plugin_get_setting(pName, args[1])
+            if newEl in arr:
+                return
+            try:
+                arr.append(newEl)
+            except:
+                arr = [newEl]
+            manager.app.plugin_set_setting(pName, args[1], arr)
+            manager.app.msg(channel, "Value added.")
+        elif task == "config" and args[0] == "del":
+            pName = args[2]
+            el = string.join(args[3:])
+            arr = manager.app.plugin_get_setting(pName, args[1])
+            if not el in arr:
+                return
+            try:
+                arr.remove(el)
+            except:
+                arr = []
+            manager.app.plugin_set_setting(pName, args[1], arr)
+            manager.app.msg(channel, "Value removed.")

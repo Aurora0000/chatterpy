@@ -1,12 +1,11 @@
 {
     "depends": [
-        "bs4",
 	"feedparser"
     ], 
     "activated": "true", 
     "help": {
         "msdn": {
-            "get [topic]": "Gets a summary for [topic] from Wikipedia."
+            "get [topic]": "Gets a summary for [topic] from MSDN."
         }
     }
 }

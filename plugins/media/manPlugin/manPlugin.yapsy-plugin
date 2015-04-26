@@ -1,0 +1,9 @@
+[Core]
+Name = Man Plugin
+Module = manPlugin
+
+[Documentation]
+Author = Aurora01
+Version = 1.0
+Website = https://int0x10.com
+Description = A plugin that gets summaries of *nix commands from man.

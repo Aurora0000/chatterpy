@@ -1,6 +1,5 @@
 from yapsy.IPlugin import IPlugin
 from yapsy.PluginManager import PluginManagerSingleton
-from bs4 import BeautifulSoup
 import string
 import logging
 import urllib
