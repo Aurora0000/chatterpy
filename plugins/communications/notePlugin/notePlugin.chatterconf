@@ -1,14 +1,15 @@
 {
-    "activated": "true", 
-    "notes": {}, 
     "allowedUsers": [
         "Aurora01"
     ], 
+    "notes": {}, 
+    "activated": "true", 
     "depends": [], 
     "help": {
         "note": {
             "read": "Reads a message from your queue", 
             "send [user] [message]": "Sends the user a note which will be sent to them on joining"
         }
-    }
+    },
+    "version": "0.3.0"
 }

@@ -11,5 +11,6 @@
     "depends": [], 
     "allowedUsers": [
         "Aurora01"
-    ]
+    ],
+	"version": "0.3.0"
 }

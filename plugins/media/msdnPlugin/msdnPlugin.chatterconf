@@ -7,5 +7,6 @@
         "msdn": {
             "get [topic]": "Gets a summary for [topic] from MSDN."
         }
-    }
+    },
+    "version": "0.3.0"
 }

@@ -46,7 +46,7 @@ class IRCBot(irc.IRCClient):
     password = ""           # wrong if these are ever used...
 
     versionMajor = 0        # TODO: Update on release!
-    versionMinor = 2
+    versionMinor = 3
     versionPatch = 0
     
     def init_plugins(self):
@@ -62,14 +62,20 @@ class IRCBot(irc.IRCClient):
                 pPath = p.path.split("/")[-1]
                 if self.plugin_configs.get_setting("activated", pPath) == "true":
                     if self.are_modules_available(self.plugin_configs.get_setting("depends", pPath)):
-                        manager.activatePluginByName(p.name)
+                        versionString = str(self.versionMajor) + "." + str(self.versionMinor) + "." + str(self.versionPatch)
+                        requireVersion = True if self.configuration["enforceVersion"] == "yes" else False
+                        if self.plugin_configs.get_setting("version", pPath) == versionString and requireVersion:
+                            manager.activatePluginByName(p.name)
+                        else:
+                            manager.deactivatePluginByName(p.name)
+                            logging.log(30, "Plugin \"" + p.name + "\" is not for the correct version of ChatterPy!")
                     else:
                        manager.deactivatePluginByName(p.name)
                        logging.log(30, "Plugin \"" + p.name + "\" does not have all dependencies available!") 
                 else:
                     manager.deactivatePluginByName(p.name)
             except LookupError as e:
-                logging.log(30, "Plugin " + p.name + " has no .chatterconf file! Deactivating.")
+                logging.log(30, "Plugin \"" + p.name + "\" has no valid .chatterconf file! The configuration may be invalid or inaccessible.")
                 manager.deactivatePluginByName(p.name)
             if hasattr(p.plugin_object, "plugin_loaded"):
                try:

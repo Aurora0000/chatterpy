@@ -8,5 +8,6 @@
         "man": {
             "get [topic]": "Gets a summary for [topic] from the man pages."
         }
-    }
+    },
+    "version": "0.3.0"
 }

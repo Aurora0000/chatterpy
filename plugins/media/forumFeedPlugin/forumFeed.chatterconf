@@ -8,5 +8,6 @@
 		"feed": {
 			"latest": "Gets the latest entry in the feed."
 		}
-	}
+	},
+	"version": "0.3.0"
 }

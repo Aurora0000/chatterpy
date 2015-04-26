@@ -10,5 +10,6 @@
 			"set [param] [pluginShortName] [value]": "Sets the specified parameter from the plugin.",
 			"getName [plugin name]": "Returns the short name of the specified plugin."
 		}
-	}
+	},
+	"version": "0.3.0"
 }

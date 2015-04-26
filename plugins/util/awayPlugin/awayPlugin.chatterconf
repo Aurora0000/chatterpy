@@ -12,5 +12,6 @@
     "allowedUsers": [
         "Aurora01"
     ], 
-    "pmOnly": "yes"
+    "pmOnly": "yes",
+    "version": "0.3.0"
 }

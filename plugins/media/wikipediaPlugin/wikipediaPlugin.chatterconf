@@ -10,5 +10,6 @@
         "wiki": {
             "get [topic]": "Gets a summary for [topic] from Wikipedia."
         }
-    }
+    },
+    "version": "0.3.0"
 }

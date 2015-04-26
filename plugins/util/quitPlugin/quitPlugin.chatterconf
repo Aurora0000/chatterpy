@@ -9,5 +9,6 @@
 		"reboot": {
 			"[]": "Reboot the bot."
 		}
-	}
+	},
+	"version": "0.3.0"
 }
