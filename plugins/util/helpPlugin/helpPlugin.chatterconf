@@ -7,14 +7,25 @@
         "quit": {
             "[]": "Quit the network."
         }, 
+        "msdn": {
+            "get [topic]": "Gets a summary for [topic] from MSDN."
+        }, 
         "help": {
             "[task]": "Gets a list of all arguments for the task", 
             "[]": "Gets a list of all tasks available"
+        }, 
+        "wiki": {
+            "get [topic]": "Gets a summary for [topic] from Wikipedia."
         }, 
         "plugin": {
             "unload [plugin name]": "Unloads the specified plugin and deactivates it.", 
             "load [plugin name]": "Loads the specified plugin and activates it.", 
             "rehash": "Reloads all plugins and updates to account for any changes."
+        }, 
+        "away": {
+            "reason [user]": "Checks why [user] is away", 
+            "set [reason]": "Sets yourself as away with [reason]", 
+            "unset": "Unsets yourself as away"
         }, 
         "reboot": {
             "[]": "Reboot the bot."
@@ -23,11 +34,21 @@
             "read": "Reads a message from your queue", 
             "send [user] [message]": "Sends the user a note which will be sent to them on joining"
         }, 
+        "version": {
+            "[]": "Gets the version of ChatterPy used by this bot."
+        }, 
         "config": {
             "get [param] [plugin name]": "Gets the specified parameter from the plugin's configuration", 
             "set [param] [pluginShortName] [value]": "Sets the specified parameter from the plugin.", 
             "getName [plugin name]": "Returns the short name of the specified plugin.", 
             "list [plugin name]": "Get all available parameters from the configuration file."
+        }, 
+        "rep": {
+            "give [user]": "Gives rep to [user].", 
+            "check [user]": "Checks a user's rep."
+        }, 
+        "man": {
+            "get [topic]": "Gets a summary for [topic] from the man pages."
         }
     }, 
     "activated": "true", 

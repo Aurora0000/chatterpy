@@ -1,0 +1,12 @@
+{
+    "blacklist": [], 
+    "depends": [
+        "bs4"
+    ], 
+    "activated": "true", 
+    "help": {
+        "man": {
+            "get [topic]": "Gets a summary for [topic] from the man pages."
+        }
+    }
+}

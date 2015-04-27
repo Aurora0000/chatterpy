@@ -1,0 +1,16 @@
+{
+    "help": {
+        "away": {
+            "reason [user]": "Checks why [user] is away", 
+            "set [reason]": "Sets yourself as away with [reason]", 
+            "unset": "Unsets yourself as away"
+        }
+    }, 
+    "awayReasons": {}, 
+    "activated": "true", 
+    "depends": [], 
+    "allowedUsers": [
+        "Aurora01"
+    ], 
+    "pmOnly": "yes"
+}

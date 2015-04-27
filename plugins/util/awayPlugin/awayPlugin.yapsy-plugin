@@ -1,0 +1,9 @@
+[Core]
+Name = Away Plugin
+Module = awayPlugin
+
+[Documentation]
+Author = Aurora01
+Version = 1.0
+Website = https://int0x10.com
+Description = A plugin that logs the reasons for a user's absence.

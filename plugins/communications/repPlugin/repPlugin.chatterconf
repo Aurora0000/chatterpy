@@ -1,0 +1,15 @@
+{
+    "help": {
+        "rep": {
+            "give [user]": "Gives rep to [user].", 
+            "check [user]": "Checks a user's rep."
+        }
+    }, 
+    "repData": {}, 
+    "activated": "true", 
+    "lastRep": "", 
+    "depends": [], 
+    "allowedUsers": [
+        "Aurora01"
+    ]
+}

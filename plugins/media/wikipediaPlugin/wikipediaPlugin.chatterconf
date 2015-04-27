@@ -1,0 +1,14 @@
+{
+    "blacklist": [
+        "Viperidae"
+    ], 
+    "depends": [
+        "bs4"
+    ], 
+    "activated": "true", 
+    "help": {
+        "wiki": {
+            "get [topic]": "Gets a summary for [topic] from Wikipedia."
+        }
+    }
+}
