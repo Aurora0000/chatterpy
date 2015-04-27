@@ -61,3 +61,4 @@ target/
 
 # Logs
 bot.log
+bot.log.*

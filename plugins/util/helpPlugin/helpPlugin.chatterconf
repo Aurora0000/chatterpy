@@ -13,18 +13,17 @@
             "[task]": "Gets a list of all arguments for the task", 
             "[]": "Gets a list of all tasks available"
         }, 
-        "quit": {
-            "[]": "Quit the network."
-        }, 
-        "away": {
-            "reason [user]": "Checks why [user] is away", 
-            "set [reason]": "Sets yourself as away with [reason]", 
-            "unset": "Unsets yourself as away"
-        }, 
         "plugin": {
             "unload [plugin name]": "Unloads the specified plugin and deactivates it.", 
             "load [plugin name]": "Loads the specified plugin and activates it.", 
             "rehash": "Reloads all plugins and updates to account for any changes."
+        }, 
+        "rep": {
+            "give [user]": "Gives rep to [user].", 
+            "check [user]": "Checks a user's rep."
+        }, 
+        "quit": {
+            "[]": "Quit the network."
         }, 
         "reboot": {
             "[]": "Reboot the bot."
@@ -37,14 +36,17 @@
             "[]": "Gets the version of ChatterPy used by this bot."
         }, 
         "config": {
-            "get [param] [plugin name]": "Gets the specified parameter from the plugin's configuration", 
+            "add [param] [pluginShortName] [value]": "Adds the specified value to the array setting", 
             "set [param] [pluginShortName] [value]": "Sets the specified parameter from the plugin.", 
             "getName [plugin name]": "Returns the short name of the specified plugin.", 
-            "list [plugin name]": "Get all available parameters from the configuration file."
+            "del [param] [pluginShortName] [value]": "Deletes the specified value from the array setting.", 
+            "list [plugin name]": "Get all available parameters from the configuration file.", 
+            "get [param] [plugin name]": "Gets the specified parameter from the plugin's configuration"
         }, 
-        "rep": {
-            "give [user]": "Gives rep to [user].", 
-            "check [user]": "Checks a user's rep."
+        "away": {
+            "reason [user]": "Checks why [user] is away", 
+            "set [reason]": "Sets yourself as away with [reason]", 
+            "unset": "Unsets yourself as away"
         }, 
         "man": {
             "get [topic]": "Gets a summary for [topic] from the man pages."

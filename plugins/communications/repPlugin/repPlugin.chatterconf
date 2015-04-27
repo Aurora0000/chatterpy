@@ -5,12 +5,16 @@
             "check [user]": "Checks a user's rep."
         }
     }, 
-    "repData": {}, 
+    "repData": {
+        "Viperidae": 1, 
+        "Ichiru": 1, 
+        "chrisco97": 1
+    }, 
     "activated": "true", 
-    "lastRep": "", 
+    "lastRep": "TheTimeKeeper:Ichiru", 
     "depends": [], 
+    "version": "0.3.0", 
     "allowedUsers": [
         "Aurora01"
-    ],
-	"version": "0.3.0"
+    ]
 }

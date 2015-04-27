@@ -6,6 +6,7 @@ from pkgutil import iter_modules
 import time
 import sys
 import logging
+import logging.handlers
 import json
 import traceback
 import os
@@ -40,6 +41,8 @@ class PluginConfigurationManager:
         json_data = json.loads(f.read())
         f.close()
         return json_data
+
+
 
 class IRCBot(irc.IRCClient):
     nickname = "Bot123"     # Default values, something's *seriously* 
@@ -84,7 +87,7 @@ class IRCBot(irc.IRCClient):
                    tb = traceback.format_exc()
                    logging.log(40, "Unhandled exception! " + tb)
             else:
-                logging.log(10, p.name + " does not have a plugin_loaded hook!")
+                logging.log(10, "\"" + p.name + "\" does not have a plugin_loaded hook!")
     def connectionMade(self):
         self.nickname = self.factory.nickname
         self.password = self.factory.password
@@ -112,7 +115,7 @@ class IRCBot(irc.IRCClient):
                     tb = traceback.format_exc()
                     logging.log(40, "Unhandled exception! " + tb)
             else:
-                logging.log(10, pluginInfo.name + " not activated/no available function (joined)!")
+                logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (joined)!")
 
     def privmsg(self, user, channel, msg):
         manager = PluginManagerSingleton.get()
@@ -124,7 +127,7 @@ class IRCBot(irc.IRCClient):
                     tb = traceback.format_exc()
                     logging.log(40, "Unhandled exception! " + tb)
             else:
-                logging.log(10, pluginInfo.name + " not activated/no available function (privmsg)!")
+                logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (privmsg)!")
         if msg.startswith("!"):
             for pluginInfo in manager.getAllPlugins():         
                 if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "botmsg"):       
@@ -137,7 +140,7 @@ class IRCBot(irc.IRCClient):
                         tb = traceback.format_exc()
                         logging.log(40, "Unhandled exception! " + tb)
                 else:
-                    logging.log(10, pluginInfo.name + " not activated/no available function (botmsg)!")
+                    logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (botmsg)!")
 
     def action(self, user, channel, msg):
         manager = PluginManagerSingleton.get()
@@ -149,7 +152,7 @@ class IRCBot(irc.IRCClient):
                     tb = traceback.format_exc()
                     logging.log(40, "Unhandled exception! " + tb)
             else:
-                logging.log(10, pluginInfo.name + " not activated/no available function (action)!")
+                logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (action)!")
 
     def userJoined(self, user, channel):
         manager = PluginManagerSingleton.get()
@@ -161,7 +164,7 @@ class IRCBot(irc.IRCClient):
                     tb = traceback.format_exc()
                     logging.log(40, "Unhandled exception! " + tb)
             else:
-                logging.log(10, pluginInfo.name + " not activated/no available function (user_joined)!")
+                logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (user_joined)!")
  
     def irc_NICK(self, prefix, params):
         # User changed their nick. We abstract this slightly.
@@ -178,7 +181,7 @@ class IRCBot(irc.IRCClient):
                     tb = traceback.format_exc()
                     logging.log(40, "Unhandled exception! " + tb)
             else:
-                logging.log(10, pluginInfo.name + " not activated/no available function (user_changed_nick)!")
+                logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (user_changed_nick)!")
     def alterCollidedNick(self, nickname):
         preSetting = str(self.configuration["collision_prefix"])
         prefix = preSetting if "collision_prefix" in self.configuration else ""
@@ -273,7 +276,14 @@ if __name__ == '__main__':
     # Set up formatters and logger
     _format = "[%(asctime)s] %(levelname)s: %(message)s"
     _datefmt = "%Y-%m-%d %H:%M:%S"
-    logging.basicConfig(filename=data["logFile"], format=_format, datefmt=_datefmt, level=log_lvl)  
+    logger = logging.getLogger()
+    logger.setLevel(log_lvl)
+    # Store maximum of 500kb of logs, make this configurable in future
+    handler = logging.handlers.RotatingFileHandler(data["logFile"], maxBytes=(1024*100), backupCount=3)
+    formatter = logging.Formatter(_format, datefmt=_datefmt)
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
     pwd = data["password"] if "password" in data else ""    #Assume no password if it isn't specified
     f = BotFactory(data["channels"], str(data["nickname"]), str(pwd), data)
     hostname = str(data["hostname"])
