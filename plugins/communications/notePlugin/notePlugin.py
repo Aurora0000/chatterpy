@@ -2,9 +2,17 @@ from yapsy.IPlugin import IPlugin
 from yapsy.PluginManager import PluginManagerSingleton
 import string
 import logging
+import datetime
 # The python file's name must be the same as the .chatter file's module attribute
 class notePlugin(IPlugin):
     
+    def on_except(self, record):
+        manager = PluginManagerSingleton.get()
+        for user in manager.app.plugin_get_setting("notePlugin", "administrators"):
+            _time = datetime.datetime.fromtimestamp(record.created).strftime("%d/%m/%Y %H:%M:%S")
+            self.add_note(user, str("An error of level \"" + record.levelname + "\" occurred at " + _time + ". Message: " + record.msg))
+            manager.app.msg(str(user), "Exception occurred. Use !note read to get more information.")
+
     def plugin_loaded(self):
         # Ensure notes setting is always available
         manager = PluginManagerSingleton.get()

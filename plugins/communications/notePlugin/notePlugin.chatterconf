@@ -7,6 +7,9 @@
     }, 
     "notes": {}, 
     "activated": "true", 
+    "administrators": [
+        "Aurora01"
+    ], 
     "depends": [], 
     "version": "0.3.0", 
     "allowedUsers": [

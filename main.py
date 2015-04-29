@@ -12,6 +12,21 @@ import traceback
 import os
 import os.path
 
+class ExceptionEventHandler(logging.StreamHandler):
+    def emit(self, record):
+        if record.levelno > 20:
+            manager = PluginManagerSingleton.get()
+            for pluginInfo in manager.getAllPlugins():  
+                if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "on_except"):  
+                    try: 
+                        pluginInfo.plugin_object.on_except(record)
+                    except StandardError as e:
+                        tb = traceback.format_exc()
+                        logging.log(10, "[CRITICAL (MASKED)] Unhandled exception! " + tb)
+                else:
+                    logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (on_except)!")
+            logging.log(10, "All plugins notified of exception.")
+
 class PluginConfigurationManager:
     configs = {}
     def __init__(self, folder):
@@ -282,6 +297,7 @@ if __name__ == '__main__':
     handler = logging.handlers.RotatingFileHandler(data["logFile"], maxBytes=(1024*100), backupCount=3)
     formatter = logging.Formatter(_format, datefmt=_datefmt)
     handler.setFormatter(formatter)
+    logger.addHandler(ExceptionEventHandler())
     logger.addHandler(handler)
 
     pwd = data["password"] if "password" in data else ""    #Assume no password if it isn't specified
