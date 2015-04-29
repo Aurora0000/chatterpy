@@ -134,6 +134,9 @@ class IRCBot(irc.IRCClient):
 
     def privmsg(self, user, channel, msg):
         manager = PluginManagerSingleton.get()
+        if user.split("!")[0] in self.configuration["globalBlacklist"]:
+            logging.log(10, user + " was ignored (blacklisted)")
+            return
         for pluginInfo in manager.getAllPlugins():  
             if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "privmsg"):   
                 try:
@@ -197,6 +200,31 @@ class IRCBot(irc.IRCClient):
                     logging.log(40, "Unhandled exception! " + tb)
             else:
                 logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (user_changed_nick)!")
+
+    def kickedFrom(self, channel, kicker, message):
+        manager = PluginManagerSingleton.get()
+        for pluginInfo in manager.getAllPlugins():  
+            if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "kicked"):  
+                try: 
+                    pluginInfo.plugin_object.kicked(self.nickname, channel, kicker, message)
+                except StandardError as e:
+                    tb = traceback.format_exc()
+                    logging.log(40, "Unhandled exception! " + tb)
+            else:
+                logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (kicked)!")
+
+    def userKicked(self, kickee, channel, kicker, message):
+        manager = PluginManagerSingleton.get()
+        for pluginInfo in manager.getAllPlugins():  
+            if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "kicked"):  
+                try: 
+                    pluginInfo.plugin_object.kicked(kickee, channel, kicker, message)
+                except StandardError as e:
+                    tb = traceback.format_exc()
+                    logging.log(40, "Unhandled exception! " + tb)
+            else:
+                logging.log(10, "\"" + pluginInfo.name + "\" not activated/no available function (kicked)!")
+        
     def alterCollidedNick(self, nickname):
         preSetting = str(self.configuration["collision_prefix"])
         prefix = preSetting if "collision_prefix" in self.configuration else ""
