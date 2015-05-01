@@ -13,7 +13,7 @@ import traceback
 
 class ExceptionEventHandler(logging.StreamHandler):
     def emit(self, record):
-        if record.levelno > 20:
+        if record.levelno > logging.INFO:
             manager = PluginManagerSingleton.get()
             for pluginInfo in manager.getAllPlugins():  
                 if pluginInfo.is_activated and hasattr(pluginInfo.plugin_object, "on_except"):  
@@ -36,6 +36,7 @@ class IRCBot(irc.IRCClient):
     versionMinor = 3
     versionPatch = 0
     
+
     def init_plugins(self):
         manager = PluginManagerSingleton.get()
         manager.app = self
@@ -248,6 +249,7 @@ class IRCBot(irc.IRCClient):
             if not self.is_module_available(m):
                 return False
         return True
+    
     
 class BotFactory(protocol.ClientFactory):
     protocol = IRCBot
