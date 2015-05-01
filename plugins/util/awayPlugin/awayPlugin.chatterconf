@@ -9,9 +9,9 @@
     "awayReasons": {}, 
     "activated": "true", 
     "depends": [], 
+    "version": "0.3.0", 
     "allowedUsers": [
         "Aurora01"
     ], 
-    "pmOnly": "yes",
-    "version": "0.3.0"
+    "pmOnly": "yes"
 }

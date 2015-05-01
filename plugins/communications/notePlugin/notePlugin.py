@@ -50,7 +50,7 @@ class notePlugin(IPlugin):
             manager = PluginManagerSingleton.get()  
             if not user in manager.app.plugin_get_setting("notePlugin", "allowedUsers"):
                 return
-            manager.app.plugin_set_setting("notePlugin", "notes", {})
+            self.cleanup()
             manager.app.msg(user, "Notes purged.")
 
     def user_joined(self, user, channel):
@@ -72,3 +72,7 @@ class notePlugin(IPlugin):
         x.append(msg)
         _notes[target] = x
         manager.app.plugin_set_setting("notePlugin", "notes", _notes)
+
+    def cleanup(self):
+        manager = PluginManagerSingleton.get()
+        manager.app.plugin_set_setting("notePlugin", "notes", {})

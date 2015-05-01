@@ -5,13 +5,9 @@
             "check [user]": "Checks a user's rep."
         }
     }, 
-    "repData": {
-        "Viperidae": 1, 
-        "Ichiru": 1, 
-        "chrisco97": 1
-    }, 
+    "repData": {}, 
     "activated": "true", 
-    "lastRep": "TheTimeKeeper:Ichiru", 
+    "lastRep": "", 
     "depends": [], 
     "version": "0.3.0", 
     "allowedUsers": [

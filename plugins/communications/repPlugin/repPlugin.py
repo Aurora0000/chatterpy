@@ -30,8 +30,7 @@ class repPlugin(IPlugin):
             elif args[0] == "purge":
                 manager = PluginManagerSingleton.get()
                 if user in manager.app.plugin_get_setting("repPlugin", "allowedUsers"):
-                    manager.app.plugin_set_setting("repPlugin", "repData", {})
-                    manager.app.plugin_set_setting("repPlugin", "lastRep", "")
+                    self.cleanup()
                     manager.app.msg(channel, "Rep data purged.")
     
     def get_rep(self, user):
@@ -52,3 +51,8 @@ class repPlugin(IPlugin):
         except KeyError:
             repData[user] = 1
         manager.app.plugin_set_setting("repPlugin", "repData", repData)
+
+    def cleanup(self):
+        manager = PluginManagerSingleton.get()
+        manager.app.plugin_set_setting("repPlugin", "repData", {})
+        manager.app.plugin_set_setting("repPlugin", "lastRep", "")
