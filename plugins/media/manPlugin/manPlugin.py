@@ -26,7 +26,11 @@ class manPlugin(IPlugin):
                 pg = urllib2.urlopen(url).read()
                 logging.debug(url)
                 soup = BeautifulSoup(pg)
-                pre = soup.find("pre")
-                text = string.join(pre.findAll(text=True)).decode("utf8").encode("ascii", "ignore")
-                manager.app.msg(channel, text[:250] + "...")
-                manager.app.msg(channel, "More information at " + str(url))
+                try:
+                    pre = soup.find("pre")
+                    text = string.join(pre.findAll(text=True)).decode("utf8").encode("ascii", "ignore")
+                    manager.app.msg(channel, text[:250] + "...")
+                    manager.app.msg(channel, "More information at " + str(url))
+                except:
+                    manager.app.msg(channel, "Search unsuccessful.")
+

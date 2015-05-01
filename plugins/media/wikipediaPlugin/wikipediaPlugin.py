@@ -21,11 +21,13 @@ class wikipediaPlugin(IPlugin):
                 topic = topic.replace(" ", "_")
                 url = "http://en.wikipedia.com/wiki/" + topic
                 logging.debug("Checking url "+ url)
-                pg = urllib2.urlopen(url)
-                soup = BeautifulSoup(pg)
-                mainText = soup.find("div", {"id": "mw-content-text"})
-                firstParagraph = mainText.find("p")
-                asciiParagraph = firstParagraph.text.encode("ascii", "ignore").decode("ascii")
-                manager.app.msg(channel, str(asciiParagraph)[:250] + "...")
-                manager.app.msg(channel, "More information at " + url)
-        
+                try:                    
+                    pg = urllib2.urlopen(url)
+                    soup = BeautifulSoup(pg)
+                    mainText = soup.find("div", {"id": "mw-content-text"})
+                    firstParagraph = mainText.find("p").text
+                    asciiParagraph = firstParagraph.encode("ascii", "ignore").decode("ascii")
+                    manager.app.msg(channel, str(asciiParagraph)[:250] + "...")
+                    manager.app.msg(channel, "More information at " + url)
+                except:
+                    manager.app.msg(channel, "Search unsuccessful.")
