@@ -1,0 +1,12 @@
+{
+    "depends": [], 
+    "version": "0.3.0", 
+    "activated": "true", 
+    "help": {},
+    "channel": "#quiz",
+    "questions": {
+        "What is 2+2?": "4",
+        "What type should be used to store this value in C#: 76.4. a) int, b) float, c) string, d) List<int>": "b",
+        "What is 0xFE in decimal?": "254"
+    }
+}

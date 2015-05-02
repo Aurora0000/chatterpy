@@ -1,0 +1,9 @@
+[Core]
+Name = Trivia Plugin
+Module = triviaPlugin
+
+[Documentation]
+Author = Aurora01
+Version = 1.0
+Website = https://int0x10.com
+Description = A trivia plugin.
