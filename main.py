@@ -264,7 +264,6 @@ class IRCBot(irc.IRCClient):
 
     @defer.inlineCallbacks
     def is_user_online(self, user):
-        #returnValue doesn't appear to like True and False, so 1 and 0 will do
         res = yield self.get_whois(user)
         logging.debug(res)
         if len(res) == 1:
@@ -274,9 +273,23 @@ class IRCBot(irc.IRCClient):
         else:
             defer.returnValue(False)
 
+    @defer.inlineCallbacks
+    def is_user_authenticated(self, user):
+        res = yield self.get_whois(user)
+        if "is logged in as" in res:
+            defer.returnValue(True)
+        else:
+            defer.returnValue(False)
+
     def irc_unknown(self, prefix, command, params):
         # params[1] is username in RPL_WHOIS*
+        logging.debug("IRC Unknown: Prefix: {} Command: {} Args: {}".format(prefix, command, params))
         if "RPL_WHOIS" in command:
+            user = params[1]
+            if user in self.__whois_callbacks:
+                data = self.__whois_callbacks[user][1]
+                data += params[2:]
+        elif "330" in command:
             user = params[1]
             if user in self.__whois_callbacks:
                 data = self.__whois_callbacks[user][1]
