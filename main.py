@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from twisted.words.protocols import irc
-from twisted.internet import reactor, protocol, ssl
+from twisted.internet import reactor, protocol, ssl, defer
 from yapsy.PluginManager import PluginManagerSingleton
 from ChatterUtils import PluginConfigurationManager
 from pkgutil import iter_modules
@@ -74,6 +74,8 @@ class IRCBot(irc.IRCClient):
             else:
                 logging.log(10, "\"" + p.name + "\" does not have a plugin_loaded hook!")
     def connectionMade(self):
+        self.__whois_callbacks = {}
+        self.__user_status = {}
         self.nickname = self.factory.nickname
         self.password = self.factory.password
         self.configuration = self.factory.config
@@ -249,7 +251,43 @@ class IRCBot(irc.IRCClient):
             if not self.is_module_available(m):
                 return False
         return True
-    
+
+    def get_whois(self, user):
+        # Touch at your own peril! (Uses some Twisted magic that no-one really
+        # understands using deferreds and callbacks)
+        d = defer.Deferred()
+        # ([callbacks], [results])
+        self.__whois_callbacks[user] = ([], [])
+        self.__whois_callbacks[user][0].append(d)
+        self.sendLine("WHOIS {}".format(user))
+        return d
+
+    @defer.inlineCallbacks
+    def is_user_online(self, user):
+        #returnValue doesn't appear to like True and False, so 1 and 0 will do
+        res = yield self.get_whois(user)
+        logging.debug(res)
+        if len(res) == 1:
+            defer.returnValue(False)
+        elif len(res) > 1:
+            defer.returnValue(True)
+        else:
+            defer.returnValue(False)
+
+    def irc_unknown(self, prefix, command, params):
+        # params[1] is username in RPL_WHOIS*
+        if "RPL_WHOIS" in command:
+            user = params[1]
+            if user in self.__whois_callbacks:
+                data = self.__whois_callbacks[user][1]
+                data += params[2:]
+        elif "RPL_ENDOFWHOIS" in command:
+            user = params[1]
+            if user in self.__whois_callbacks:
+                cbs, data = self.__whois_callbacks[user]
+                data.insert(0, user)
+                for cb in cbs:
+                    cb.callback(data)
     
 class BotFactory(protocol.ClientFactory):
     protocol = IRCBot
@@ -259,6 +297,7 @@ class BotFactory(protocol.ClientFactory):
         self.nickname = nickname
         self.password = password
         self.config = config
+
     def clientConnectionLost(self, connector, reason):
         #Reconnect if we weren't told to quit
         manager = PluginManagerSingleton.get()

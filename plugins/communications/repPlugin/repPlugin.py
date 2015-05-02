@@ -1,5 +1,6 @@
 from yapsy.IPlugin import IPlugin
 from yapsy.PluginManager import PluginManagerSingleton
+from twisted.internet import defer, reactor
 import logging
 # The python file's name must be the same as the .chatter file's module attribute
 class repPlugin(IPlugin):
@@ -10,11 +11,17 @@ class repPlugin(IPlugin):
             user = user.split("!")[0]
             manager.app.msg(channel, user + ": You can give rep to that user with !rep give [user]")
 
-    def botmsg(self, user, channel, task, args):
+    @defer.inlineCallbacks
+    def deferred_botmsg(self, user, channel, task, args):
         if task == "rep":
             user = user.split("!")[0]
             if args[0] == "give":
                 manager = PluginManagerSingleton.get()
+                user_stat = yield manager.app.is_user_online(args[1])
+                if user_stat == False:
+                    logging.warning(manager.app.is_user_online(args[1]))
+                    manager.app.msg(channel, "This user doesn't appear to be here!")
+                    return
                 if args[1] == user:
                     manager.app.msg(channel, "You cannot give yourself rep.")
                     return
@@ -33,7 +40,11 @@ class repPlugin(IPlugin):
                 if user in manager.app.plugin_get_setting("repPlugin", "allowedUsers"):
                     self.cleanup()
                     manager.app.msg(channel, "Rep data purged.")
-    
+ 
+
+    def botmsg(self, user, channel, task, args):
+        reactor.callLater(0.1, self.deferred_botmsg, user, channel, task, args)
+
     def get_rep(self, user):
         manager = PluginManagerSingleton.get()
         repData = manager.app.plugin_get_setting("repPlugin", "repData")

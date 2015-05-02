@@ -3,8 +3,8 @@
         "wiki": {
             "get [topic]": "Gets a summary for [topic] from Wikipedia."
         }, 
-        "quit": {
-            "[]": "Quit the network."
+        "feed": {
+            "latest": "Gets the latest entry in the feed."
         }, 
         "msdn": {
             "get [topic]": "Gets a summary for [topic] from MSDN."
@@ -18,9 +18,13 @@
             "load [plugin name]": "Loads the specified plugin and activates it.", 
             "rehash": "Reloads all plugins and updates to account for any changes."
         }, 
-        "rep": {
-            "give [user]": "Gives rep to [user].", 
-            "check [user]": "Checks a user's rep."
+        "away": {
+            "reason [user]": "Checks why [user] is away", 
+            "set [reason]": "Sets yourself as away with [reason]", 
+            "unset": "Unsets yourself as away"
+        }, 
+        "quit": {
+            "[]": "Quit the network."
         }, 
         "reboot": {
             "[]": "Reboot the bot."
@@ -40,13 +44,9 @@
             "list [plugin name]": "Get all available parameters from the configuration file.", 
             "get [param] [plugin name]": "Gets the specified parameter from the plugin's configuration"
         }, 
-        "away": {
-            "reason [user]": "Checks why [user] is away", 
-            "set [reason]": "Sets yourself as away with [reason]", 
-            "unset": "Unsets yourself as away"
-        }, 
-        "feed": {
-            "latest": "Gets the latest entry in the feed."
+        "rep": {
+            "give [user]": "Gives rep to [user].", 
+            "check [user]": "Checks a user's rep."
         }, 
         "man": {
             "get [topic]": "Gets a summary for [topic] from the man pages."
