@@ -1,0 +1,9 @@
+[Core]
+Name = Authentication Plugin
+Module = authPlugin
+
+[Documentation]
+Author = Aurora01
+Version = 1.0
+Website = https://int0x10.com
+Description = Authenticates the bot (useful if you want to make the bot AOPed)

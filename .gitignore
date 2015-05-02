@@ -62,3 +62,6 @@ target/
 # Logs
 bot.log
 bot.log.*
+
+# NickServ password file
+plugins/util/authPlugin/passwd.data
