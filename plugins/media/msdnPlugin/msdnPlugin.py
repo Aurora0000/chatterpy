@@ -19,8 +19,10 @@ class msdnPlugin(IPlugin):
                 params = urllib.urlencode({"query": topic + " site:msdn.microsoft.com", "format": "RSS"}) 
                 url = "https://social.msdn.microsoft.com/search/en-US/feed?" + params
                 searchRes = feedparser.parse(url)
-                url = searchRes.entries[0].link
-                asciiParagraph = str(searchRes.entries[0].description)
-                manager.app.msg(channel, str(asciiParagraph)[:250] + "...")
-                manager.app.msg(channel, "More information at " + str(url))
-        
+                try:
+                    url = searchRes.entries[0].link
+                    asciiParagraph = str(searchRes.entries[0].description)
+                    manager.app.msg(channel, str(asciiParagraph)[:250] + "...")
+                    manager.app.msg(channel, "More information at " + str(url))
+                except:
+                    manager.app.msg(channel, "Search unsuccessful.")

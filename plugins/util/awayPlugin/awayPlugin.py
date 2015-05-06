@@ -49,3 +49,7 @@ class awayPlugin(IPlugin):
             return _cur[user]
         except KeyError:
             return "User is not away!"
+
+    def cleanup(self):
+        manager = PluginManagerSingleton.get()
+        manager.app.plugin_set_setting("awayPlugin", "awayReasons", {})

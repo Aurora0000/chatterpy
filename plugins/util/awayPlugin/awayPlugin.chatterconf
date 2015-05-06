@@ -9,6 +9,7 @@
     "awayReasons": {}, 
     "activated": "true", 
     "depends": [], 
+    "version": "0.3.0", 
     "allowedUsers": [
         "Aurora01"
     ], 

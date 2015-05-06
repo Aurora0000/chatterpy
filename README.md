@@ -18,7 +18,7 @@ ChatterPy requires a bot.conf file (in JSON format) with the following attribute
 
 "port" - The port of the IRC network (e.g. 6667)
 
-"ssl" - Toggles SSL on (required for some networks)
+"ssl" - (`"yes"/"no"`)Toggles SSL on (required for some networks)
 
 "nickname" - The nick of the bot
 
@@ -29,5 +29,7 @@ ChatterPy requires a bot.conf file (in JSON format) with the following attribute
 "collision_prefix" - *Optional*. Added before nickname if the desired nickname is taken.
 
 "collision_suffix" - *Optional*. Added after nickname if desired nickname is taken.
+
+"enforceVersion" - `"yes"` if plugins should only be loaded if they are compatible with this version of ChatterPy. If bot.log is showing WARNINGs due to version incompatibilities, but you're sure the plugin will work anyway, set this to `"no"`.
 
 It is advisable that at least one of the above is used, or the bot will fail to connect if the desired nick is taken.

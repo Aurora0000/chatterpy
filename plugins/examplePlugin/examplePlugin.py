@@ -1,5 +1,6 @@
 from yapsy.IPlugin import IPlugin
 from yapsy.PluginManager import PluginManagerSingleton
+import logging
 # The python file's name must be the same as the .chatter file's module attribute
 class examplePlugin(IPlugin):
     def privmsg(self, user, channel, msg):

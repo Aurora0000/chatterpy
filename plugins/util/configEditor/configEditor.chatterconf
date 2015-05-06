@@ -8,7 +8,10 @@
 			"get [param] [plugin name]": "Gets the specified parameter from the plugin's configuration",
 			"list [plugin name]": "Get all available parameters from the configuration file.",
 			"set [param] [pluginShortName] [value]": "Sets the specified parameter from the plugin.",
-			"getName [plugin name]": "Returns the short name of the specified plugin."
+			"getName [plugin name]": "Returns the short name of the specified plugin.",
+			"add [param] [pluginShortName] [value]": "Adds the specified value to the array setting",
+			"del [param] [pluginShortName] [value]": "Deletes the specified value from the array setting."
 		}
-	}
+	},
+	"version": "0.3.0"
 }

@@ -15,5 +15,6 @@
              "unload [plugin name]": "Unloads the specified plugin and deactivates it.",
              "rehash": "Reloads all plugins and updates to account for any changes."
 	}
-    }
+    },
+    "version": "0.3.0"
 }
