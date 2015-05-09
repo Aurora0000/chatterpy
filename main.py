@@ -39,6 +39,7 @@ class IRCBot(irc.IRCClient):
 
     def init_plugins(self):
         manager = PluginManagerSingleton.get()
+        self.plugin_configs = PluginConfigurationManager("./plugins")
         manager.app = self
         manager.quit = False
         manager.setPluginPlaces(["plugins"])   

@@ -7,6 +7,23 @@
     "questions": {
         "What is 2+2?": "4",
         "What type should be used to store this value in C#: 76.4. a) int, b) float, c) string, d) List<int>": "b",
-        "What is 0xFE in decimal?": "254"
+        "What is 0xFE in decimal?": "254",
+        "What size is the EAX register on x86 computers? a) 8 bits, b) 16 bits, c) 30 bits, d) 32 bits, e) 64 bits": "d",
+        "What does MVC stand for?": "Model view controller",
+        "What is the name for half a byte?": "Nibble",
+        "Would it be more appropriate to store Pi as a variable or constant (assuming your language doesn't already provide this in its standard libraries)?": "constant",
+        "True or false: YAML is a file configuration format, generally used by Python.": "true",
+        "What does the POSIX signal SIGSEGV indicate? a) Segmentation Vector, b) Segmentation Fault, c) Program Killed, d) Program Ended ": "b",
+        "What does the ALU stand for? a) Arithmetic/Logic Unit, b) Advanced Logic Unit, c) Arithmetic Loading Unit, d) Arithmetic/Logic Utility": "a",
+        "Is a hash function easily reversible?": "no",
+        "ROM is read-only. True or false?": "true",
+        "If both inputs are true in an XOR gate, the output will be: a) true, b) false": "b",
+        "Which command could be used to unzip and extract a .tar.gz file? a) gunzip, b) tar -xf, c) bunzip, d) tar -xvjf": "b",
+        "In C, what is (void*)0? a) Null pointer, b) Invalid, c) Pointer to function start": "a",
+        "In C#, string and System.String are the same. True or false?": "true",
+        "In HTML5, <center> is recommended. True or false?": "False",
+        "In web development, is Node.js much slower than Django and Ruby on Rails? (true/false)": "false",
+        "In AngluarJS, is data-ng-app used to indicate where AngularJS should be active? (true/false)": "true",
+        "In web development, does nginx use .htaccess files? (true/false)": "false"
     }
 }
