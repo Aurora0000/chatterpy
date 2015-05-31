@@ -59,7 +59,7 @@ class notePlugin(IPlugin):
         _notes = manager.app.plugin_get_setting("notePlugin", "notes")
         if user in _notes:
             if len(_notes[user]) > 0:
-                manager.app.msg(user, "You have " + str(len(_notes[iser])) + " new messages. Use !note read to read each one.")
+                manager.app.msg(user, "You have " + str(len(_notes[user])) + " new messages. Use !note read to read each one.")
     def add_note(self, target, msg):
         manager = PluginManagerSingleton.get()
         _notes = manager.app.plugin_get_setting("notePlugin", "notes")
