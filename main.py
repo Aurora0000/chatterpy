@@ -6,6 +6,7 @@ from ChatterUtils import PluginConfigurationManager
 from pkgutil import iter_modules
 import time
 import sys
+import os
 import logging
 import logging.handlers
 import json
@@ -47,7 +48,7 @@ class IRCBot(irc.IRCClient):
         logging.log(10, "Checking plugin compatibility...")    
         for p in manager.getAllPlugins():
             try:
-                pPath = p.path.split("/")[-1]
+                pPath = p.path.split(os.sep)[-1]
                 if self.plugin_configs.get_setting("activated", pPath) == "true":
                     if self.are_modules_available(self.plugin_configs.get_setting("depends", pPath)):
                         versionString = str(self.versionMajor) + "." + str(self.versionMinor) + "." + str(self.versionPatch)
@@ -224,7 +225,7 @@ class IRCBot(irc.IRCClient):
 
     def get_plugin_short_path(self, name):
         manager = PluginManagerSingleton.get()
-        return manager.getPluginByName(name).path.split("/")[-1]
+        return manager.getPluginByName(name).path.split(os.sep)[-1]
 
     def plugin_get_setting(self, name, setting):
         return self.plugin_configs.get_setting(setting, name)
