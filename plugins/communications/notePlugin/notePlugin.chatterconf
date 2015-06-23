@@ -5,7 +5,11 @@
             "send [user] [message]": "Sends the user a note which will be sent to them on joining"
         }
     }, 
-    "notes": {}, 
+    "notes": {
+        "Aurora01": [
+            "An error of level \"WARNING\" occurred at 23/06/2015 17:14:03. Message: Password data file not found. Cannot authenticate!"
+        ]
+    }, 
     "activated": "true", 
     "administrators": [
         "Aurora01"
