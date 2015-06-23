@@ -1,5 +1,5 @@
 # chatterpy
-ChatterPy is a lightweight bot framework based on Twisted, designed to be easy to use, with a powerful module loading system and a great amount of flexibility.
+ChatterPy is a lightweight **IRC bot** framework based on Twisted, designed to be easy to use, with a powerful module loading system and a great amount of flexibility.
 
 ## Dependencies
 * [yapsy] (http://yapsy.sourceforge.net/)
